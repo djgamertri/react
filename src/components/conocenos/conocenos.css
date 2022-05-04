@@ -1,0 +1,72 @@
+#Conocenos{
+    width: 100%;
+    padding: 70px 0;
+}
+.title-text{
+    text-align: center;
+    padding-bottom: 70px;
+}
+.title-text p{
+    margin: auto;
+    font-size: 20px;
+    color: #009688;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+}
+.title-text p::after{
+    content: '';
+    width: 50px;
+    height: 30px;
+    background: linear-gradient(#019587,#fff);
+    position: absolute;
+    top: -20px;
+    left: 0;
+    z-index: -1;
+    transform: rotate(10deg);
+    border-top-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
+.title-text h1{
+    font-size: 50px;
+}
+.Conocenos-box{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+}
+.Conocenos1{
+    flex-basis: 50%;
+}
+.Conocenos-img{
+    flex-basis: 50%;
+    margin: auto;
+}
+.Conocenos-img img{
+    width: 70%;
+    border-radius: 20px;
+    opacity: 0;
+    transition: .7s ease-in-out all;
+}
+.Conocenos-img img.visible{
+    opacity: 1;
+}
+.Conocenos1 h1{
+    text-align: left;
+    margin-bottom: 10px;
+    color: #009688;
+}
+.Conocenos-desc{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.Conocenos-text p{
+    padding:  0 20px;
+    font-size: 30px;
+    text-align: initial;
+}
