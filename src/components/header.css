@@ -1,19 +1,12 @@
 
-.nav{
-    top: 0;
-    left: -345px;
-    width: 345px;
-    height: 100%;
-    position: fixed;
-    background: var(--color_p);
-    transition: 0.5s;
-    z-index: 2;
 
-}
 .logo{
     height: 90px;
     padding: 1rem 0rem 1rem 2rem;
     color: #fff;
+}
+#btn-menu:hover{
+    cursor: pointer;
 }
 .logo span{
     display: inline-block;

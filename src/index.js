@@ -3,10 +3,9 @@ import App from "./App"
 import "./index.css"
 
 
-ReactDOM.render(<App/>, document.getElementById("root"))
-
-
-var btn = document.getElementById("btn");
+ReactDOM.render(<App />, document.getElementById("root"))
+/*
+var btn = document.getElementById("btn-menu");
 var nav = document.getElementById("nav");
 var content = document.getElementById("content");
 
@@ -23,6 +22,7 @@ btn.onclick = function(){
     }
 }
 
+*/
 // observer 
 
 const img0 = document.getElementById("imagen0");
