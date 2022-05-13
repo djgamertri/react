@@ -1,54 +1,87 @@
-import React, {useRef, useState} from 'react'
-import "./login.css"
+import React, { Component, useRef } from "react";
+import axios from "axios";
+import Cookies from "universal-cookie";
+import "./login.css";
 
-const url_l = "http://localhost/Barbershop/models/index.php"
+const url_l = "http://localhost/Barbershop/models/usuarios.php";
+const cookies = new Cookies();
 
-const envio = async (url, data) => {
-    const resp = await fetch (url, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'content-type':'application/json'
-        }
-        
+class Login extends Component {
+
+  state = {
+    form: {
+      email: "",
+      password: "",
+    },
+  };
+
+  handleChange = async (e) => {
+    await this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value,
+      },
     });
-    const respuesta = await resp.json();
-    console.log(respuesta)
-}
+  };
 
-const Login = () => {
-
-    const RefUsuario = useRef(null);
-    const RefPass = useRef(null);
-
-    const HLogin = async () => {
-        const data = {
-            "user" : RefUsuario.current.value,
-            "pass" : RefPass.current.value
-        };
-        console.log(data);
-        const respuestaJson = await envio(url_l, data);
+  componentDidMount() {
+    if (cookies.get("nombre")) {
+      window.location.href = "./";
     }
+  }
 
-  return (
-    <div>
+  peticion = async () => {
+    await axios
+      .get(url_l, {
+        params: {
+          correo: this.state.form.email,
+          pass: this.state.form.password,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        return response.data;
+      })
+      .then((response) => {
+        if (response.length > 0) {
+          var res = response[0];
+          cookies.set("id", res.id, { path: "/" });
+          cookies.set("nombre", res.nombre, { path: "/" });
+          cookies.set("correo", res.correo, { path: "/" });
+          alert(`Bienvenido ${res.nombre} ${res.correo}`);
+          window.location.href = "../";
+        } else {
+          alert("error");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  render() {
+    return (
+      <div>
         <section className="modal_login">
-        <div className="contenedor_modal">
-            <a href="#" className="modal_close">X</a>
-            <br/>
+          <div className="contenedor_modal">
+            <a href="#" className="modal_close">
+              X
+            </a>
+            <br />
             <div className="form">
-                <h1>Login</h1>
-                <input type="email" required name="email" ref={RefUsuario} id="email" placeholder="Email"/>
-                <input type="password" required name="password" ref={RefPass} id="pass" placeholder="Password"/>
-                <input type="submit" name="" onClick={HLogin} id="boton" value="Login"/>
+              <h1>Login</h1>
+              <input type="email" required name="email" onChange={this.handleChange} id="email" placeholder="Email" />
+              <input type="password" required name="password" onChange={this.handleChange} id="pass" placeholder="Password" />
+              <input type="submit" name="" onClick={() => this.peticion()} id="boton" value="Login" />
             </div>
             <div className="warnings">
-                <p className="mensaje">Fuck</p>
+              <p className="mensaje">Fuck</p>
             </div>
-        </div>
+          </div>
         </section>
-    </div>
-  )
+      </div>
+    );
+  }
 }
 
-export default Login
+export default Login;
