@@ -4,26 +4,6 @@ import "./index.css"
 
 
 ReactDOM.render(<App />, document.getElementById("root"))
-/*
-var btn = document.getElementById("btn-menu");
-var nav = document.getElementById("nav");
-var content = document.getElementById("content");
-
-//navegacion
-
-btn.onclick = function(){
-    if(nav.style.left == "0px"){
-        nav.style.left = "-345px"
-        content.style.marginLeft = "0px";
-    }
-    else{
-        nav.style.left = "0px"
-        content.style.marginLeft = "345px";
-    }
-}
-
-*/
-// observer 
 
 const img0 = document.getElementById("imagen0");
 const img1 = document.getElementById("imagen1");

@@ -8,6 +8,7 @@ import Inicio from './components/inicio'
 import Login from './components/login'
 import Producto from './components/productos'
 import M_Reserva from './components/Mreservas'
+import Usuario from './components/usuario'
 
 function App () {
   return (
@@ -18,6 +19,7 @@ function App () {
         <Route path="/login" exact component={Login}/>
         <Route path="/servicios" exact component={Producto}/>
         <Route path="/Reserva" exact component={M_Reserva}/>
+        <Route path="/Usuario" exact component={Usuario}/>
         <Route path="/" exact component={Inicio}/>
       </Switch>
     </Router>

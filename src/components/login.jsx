@@ -3,7 +3,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import "./login.css";
 
-const url_l = "http://localhost/Barbershop/models/usuarios.php";
+const url_l = "http://localhost/Api/usuario.php";
 const cookies = new Cookies();
 
 class Login extends Component {
@@ -46,9 +46,11 @@ class Login extends Component {
         if (response.length > 0) {
           var res = response[0];
           cookies.set("id", res.id, { path: "/" });
+          cookies.set("imagen", res.imagen, { path: "/" });
           cookies.set("nombre", res.nombre, { path: "/" });
           cookies.set("correo", res.correo, { path: "/" });
-          alert(`Bienvenido ${res.nombre} ${res.correo}`);
+          cookies.set("rol", res.rol, { path: "/" });
+          alert(`Bienvenido ${res.nombre} ${res.rol}`);
           window.location.href = "../";
         } else {
           alert("error");
@@ -73,9 +75,6 @@ class Login extends Component {
               <input type="email" required name="email" onChange={this.handleChange} id="email" placeholder="Email" />
               <input type="password" required name="password" onChange={this.handleChange} id="pass" placeholder="Password" />
               <input type="submit" name="" onClick={() => this.peticion()} id="boton" value="Login" />
-            </div>
-            <div className="warnings">
-              <p className="mensaje">Fuck</p>
             </div>
           </div>
         </section>

@@ -1,3 +1,7 @@
+# Comando para react-router-dom 5, axios, universal-cookie, styled-components
+
+npm i react-router-dom@5.3.0 axios universal-cookie styled-components
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
