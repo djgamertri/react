@@ -1,7 +1,20 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import Cookies from 'universal-cookie'
+import { useHistory } from 'react-router-dom';
 import "./dashboard.css"
 
+const cookies = new Cookies();
+
 const Dashboard = () => {
+    
+    useEffect(()=>{
+        if (cookies.get("rol") != "Administrador"){
+            history.push("/");
+        }
+    }, [])
+    
+    const history = useHistory();
+
   return (
       <div>
           <main>

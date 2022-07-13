@@ -1,86 +1,85 @@
-import React, { Component, useRef } from "react";
+import React, {useRef, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import Cookies from "universal-cookie";
 import "./login.css";
 
-const url_l = "http://localhost/Api/usuario.php";
-const cookies = new Cookies();
+const Login = ({CloseModal}) => {
 
-class Login extends Component {
+    // ! Cuando inicia el Componente
 
-  state = {
-    form: {
-      email: "",
-      password: "",
-    },
-  };
+    useEffect(()=>{
+        if (cookies.get("nombre")) {
+            history.push("/");
+          }
+    }, [])
 
-  handleChange = async (e) => {
-    await this.setState({
-      form: {
-        ...this.state.form,
-        [e.target.name]: e.target.value,
-      },
-    });
-  };
+    // ! Definimos Constantes
 
-  componentDidMount() {
-    if (cookies.get("nombre")) {
-      window.location.href = "./";
+    const RefCorreo = useRef(null);
+    const RefPass = useRef(null);
+    const cookies = new Cookies();
+    const history = useHistory();
+    const url_l = "http://localhost/Api/usuario.php";
+    
+
+    const preEnvio = (e) =>{
+      e.preventDefault();
+      Envio();
     }
-  }
 
-  peticion = async () => {
-    await axios
-      .get(url_l, {
-        params: {
-          correo: this.state.form.email,
-          pass: this.state.form.password,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        return response.data;
-      })
-      .then((response) => {
-        if (response.length > 0) {
-          var res = response[0];
-          cookies.set("id", res.id, { path: "/" });
-          cookies.set("imagen", res.imagen, { path: "/" });
-          cookies.set("nombre", res.nombre, { path: "/" });
-          cookies.set("correo", res.correo, { path: "/" });
-          cookies.set("rol", res.rol, { path: "/" });
-          alert(`Bienvenido ${res.nombre} ${res.rol}`);
-          window.location.href = "../";
-        } else {
-          alert("error");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    // ! Definimos la funcion del envio
 
-  render() {
+    const Envio = async() =>{
+      await axios.get(url_l, {
+          params: {
+            correo: RefCorreo.current.value,
+            pass: RefPass.current.value,
+          },
+        })
+        .then((response) => {
+          return response.data; // ! Retornamos Respuesta para evaluarla
+        })
+        .then((response) => {
+          if (response.length > 0) {
+            var res = response[0];
+            cookies.set("id", res.id, { path: "/" });
+            cookies.set("imagen", res.imagen, { path: "/" });
+            cookies.set("nombre", res.nombre, { path: "/" });
+            cookies.set("correo", res.correo, { path: "/" });
+            cookies.set("pass", res.pass, { path: "/" });
+            cookies.set("rol", res.rol, { path: "/" });
+            alert(`Bienvenido ${res.nombre} ${res.rol}`);
+            CloseModal(false);
+            window.location.href = "../";
+            history.push("/");
+          } else {
+            alert("Credenciales Incorrectas, Porfavor intente de nuevo");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
     return (
-      <div>
+    <div>
         <section className="modal_login">
           <div className="contenedor_modal">
-            <a href="#" className="modal_close">
+            <a href="#" className="modal_close" onClick={() => CloseModal(false)}>
               X
             </a>
             <br />
-            <div className="form">
+            <form className="form" autoComplete="off" onSubmit={preEnvio}>
               <h1>Login</h1>
-              <input type="email" required name="email" onChange={this.handleChange} id="email" placeholder="Email" />
-              <input type="password" required name="password" onChange={this.handleChange} id="pass" placeholder="Password" />
-              <input type="submit" name="" onClick={() => this.peticion()} id="boton" value="Login" />
-            </div>
+              <input type="email" required name="email" id="email" ref={RefCorreo} placeholder="Email" />
+              <input type="password" required name="password" id="pass" ref={RefPass} placeholder="Password" />
+              <input type="submit" name="" id="boton" onSubmit={preEnvio} value="Login" />
+            </form>
           </div>
         </section>
       </div>
-    );
-  }
+  )
 }
 
-export default Login;
+export default Login
