@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
+
+:root{
+    --color_p: #009688;
+    --color_d: #1D2231;
+    --color_grey: #8390A2;
+}
+*{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+html{
+    scroll-behavior: smooth;
+}
+@media screen and (max-width: 770px){
+    hr{
+        margin: 5px auto;
+    }
+    .banner-text h1{
+       font-size: 44px; 
+    }
+    .banner-btn a{
+        display: block;
+        margin: 20px auto;
+    }
+    .title-text h1{
+        font-size: 35px;
+    }
+    .Conocenos1{
+        flex-basis: 100%;
+    }
+    .Conocenos-img{
+        flex-basis: 100%;
+    }
+    .Conocenos-img img{
+        width: 100%;
+    }
+    .servicio1{
+        flex-basis: 100%;
+        margin-bottom: 30px;
+    }
+    .servicio-desc p{
+        font-size: 12px;
+    }
+    .servicio1:hover .servicio-desc{
+        bottom: 25%;
+    }
+    .footer-left,.footer-right{
+        flex-basis: 100%;
+        font-size: 14px;
+    }
+    .footer-img{
+        top: 70%;
+    }
+    .contenedor_modal{
+        width: auto;
+    }
+}
+@media screen and (max-width: 560px){
+    .content{
+        margin-left: 0px !important;
+        width: 100%;
+    }
+    .user{
+        margin-top: 10px;
+        justify-content: right;
+    }
+    .nav{
+        left: -345px ;
+    }
+}
+@media screen and (max-width: 450px){
+    .menu{
+        margin-top: 2rem;
+    }
+}
