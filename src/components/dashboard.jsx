@@ -1,51 +1,74 @@
-import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 import Cookies from 'universal-cookie'
 import { useHistory } from 'react-router-dom';
-import "./dashboard.css"
+import React, {useState, useEffect} from 'react'
 
-const cookies = new Cookies();
+import "./dashboard.css"
+import AdminNav from "./navbars/AdminNav";
+
 
 const Dashboard = () => {
     
+    const cookies = new Cookies();
+    const history = useHistory();
+    const url = "http://localhost/Api/dashboard.php";
+    const [resultado, setresultado] = useState([])
+
     useEffect(()=>{
         if (cookies.get("rol") != "Administrador"){
             history.push("/");
         }
+        Peticion()
     }, [])
+
+    const Peticion = () => {
+        axios.get(url)
+        .then((response) => {
+            console.log(response.data);
+            const data = response.data;
+            setresultado(data)
+        })
+    }
     
-    const history = useHistory();
+    
 
   return (
       <div>
+        <AdminNav/>
           <main>
            <div className="content-card" id="content-card">
-                <div className="card">
-                    <div>
-                        <h1>12</h1>
-                        <span>Usuarios</span>
-                    </div>
-                    <div>
-                        <span><i className="las la-user"></i></span>
-                    </div>
-                </div>
-                <div className="card">
-                    <div>
-                        <h1>30</h1>
-                        <span>Reservas</span>
-                    </div>
-                    <div>
-                        <span><i className="las la-book"></i></span>
-                    </div>
-                </div>
-                <div className="card">
-                    <div>
-                        <h1>Erick Rodriguez</h1>
-                        <span>Ultimo usuario registrado</span>
-                    </div>
-                    <div>
-                        <span><i className="las la-user-check"></i></span>
-                    </div>
-                </div>
+                    {
+                        resultado.map(item => (
+                            <><div className="card">
+                                <div>
+                                    <h1>{item.ContadorU}</h1>
+                                    <span>Usuarios</span>
+                                </div>
+                                <div>
+                                    <span><i className="las la-user"></i></span>
+                                </div>
+                            </div><div className="card">
+                                    <div>
+                                        <h1>{item.ContadorR}</h1>
+                                        <span>Reservas</span>
+                                    </div>
+                                    <div>
+                                        <span><i className="las la-book"></i></span>
+                                    </div>
+                                </div><div className="card">
+                                    <div>
+                                        <h1>{item.Nombre}</h1>
+                                        <span>Ultimo usuario registrado</span>
+                                    </div>
+                                    <div>
+                                        <span><i className="las la-user-check"></i></span>
+                                    </div>
+                                </div></>
+                            ))
+                    }
+
+                
+                
             </div>
             </main>
       </div>

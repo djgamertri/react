@@ -1,10 +1,13 @@
-import React, {useState, useEffect} from 'react'
 import Cookies from 'universal-cookie'
 import { NavLink } from 'react-router-dom'
-import { Nav } from "../estilos"
-import Login from './login'
-import Register from './register'
-import "./header.css"
+import React, { useState, useEffect } from 'react'
+
+import "../header.css"
+import Login from '../login'
+import Register from '../register'
+import Perfil from '../perfil'
+
+import { Nav } from "../../estilos"
 
 const cookies = new Cookies();
 
@@ -19,6 +22,9 @@ const Header = (actulizar) => {
         }
     }, [])
 
+    useEffect(() => {
+      }, []);
+
     const [OpenModal, setOpenModal] = useState(false)
     const [OpenModalR, setOpenModalR] = useState(false)
     const [Despliegue, setDespliegue] = useState(false)
@@ -29,7 +35,10 @@ const Header = (actulizar) => {
         cookies.remove("id", { path: "/" });
         cookies.remove("nombre", { path: "/" });
         cookies.remove("correo", { path: "/" });
+        cookies.remove("imagen", { path: "/" });
+        cookies.remove("pass", { path: "/" });
         cookies.remove("rol", { path: "/" });
+        localStorage.clear("CartProducts");
     }
 
   return (
@@ -47,11 +56,11 @@ const Header = (actulizar) => {
                 {
                     Logeado ? <li><NavLink to="/servicios" exact activeClassName='active' ><span><i className="las la-cart-plus"></i></span>Reservas</NavLink></li> : ""
                 }
-                <li><a href="#Conocenos" exact activeClassName='active' ><span><i className="las la-address-book"></i></span>Conocenos</a></li>
-                <li><a href="#servicio" exact activeClassName='active' ><span><i className="las la-book-reader"></i></span>Servicio</a></li>
-                <li><a href="#footer" exact activeClassName='active' ><span><i className="las la-phone"></i></span>Contactanos</a></li>
+                <li><a href="/#Conocenos" exact activeClassName='active' ><span><i className="las la-address-book"></i></span>Conocenos</a></li>
+                <li><a href="/#servicio" exact activeClassName='active' ><span><i className="las la-book-reader"></i></span>Servicio</a></li>
+                <li><a href="/#footer" exact activeClassName='active' ><span><i className="las la-phone"></i></span>Contactanos</a></li>
                 {
-                    Logeado ? <li><NavLink to="/servicios" exact activeClassName='active' ><span><i className="las la-book"></i></span>Mis Reservas</NavLink></li> : ""
+                    Logeado ? <li><NavLink to="/productos" exact activeClassName='active' ><span><i className="las la-book"></i></span>Mis Reservas</NavLink></li> : ""
                 }
                 {
                     Logeado ? "" : <li><NavLink to="" onClick={() => {setOpenModal(true);}} className="login_btn" exact activeClassName=''><span><i className="las la-user"></i></span>Login</NavLink></li> 
@@ -73,16 +82,9 @@ const Header = (actulizar) => {
             </h2>
             {
                 Logeado ?     
-                
-                <div className="user" id="user">
-                <img className="img_user" src={cookies.get("imagen")} alt=""/>
-                    <div>
-                        <h4>{cookies.get("nombre")}</h4>
-                        <small>{cookies.get("rol")}</small>
-                    </div>
-                </div>
+                <Perfil/>
 
-                : ""
+                : null
             }
             
         </header>

@@ -49,7 +49,6 @@
 .Conocenos-img img{
     width: 70%;
     border-radius: 20px;
-    opacity: 0;
     transition: .7s ease-in-out all;
 }
 .Conocenos-img img.visible{

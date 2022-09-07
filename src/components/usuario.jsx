@@ -1,9 +1,10 @@
-import React, { useState, useEffect} from 'react'
-import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import Cookies from 'universal-cookie'
+import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect} from 'react'
 import Editar from './editar'
 import Eliminar from './eliminar';
+import AdminNav from "./navbars/AdminNav";
 import "./usuario.css"
 
 
@@ -56,6 +57,7 @@ const Usuario = () => {
 
   return (
     <main>
+    <AdminNav/>
     <h1>Usuarios</h1>
         <div className="table">
         <table>
@@ -63,7 +65,6 @@ const Usuario = () => {
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Correo</th>
-                <th>Contraseña</th>
                 <th>Rol</th>
                 <th>Acciones</th>
             </tr>
@@ -73,7 +74,6 @@ const Usuario = () => {
                     <td> {item.id} </td>
                     <td> {item.nombre} </td>
                     <td> {item.correo} </td>
-                    <td> {item.pass} </td>
                     <td> {item.rol} </td>
                     
                     <td><a className="Edit" id="Edit" onClick={() => preEnvio & EditarID(item.id)} href="#">Editar </a>

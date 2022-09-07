@@ -1,7 +1,8 @@
-import React, {useRef, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
+import md5 from "md5";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import React, {useRef, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import "./login.css";
 
 const Register = ({CloseModal}) => {
@@ -28,7 +29,7 @@ const Register = ({CloseModal}) => {
         await axios.put(url, {
             username: RefUser.current.value,
             email: RefCorreo.current.value,
-            password: RefPass.current.value,
+            password: md5(RefPass.current.value),
         })
         .then((response) => {
             switch (response.data) {

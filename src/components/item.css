@@ -1,0 +1,60 @@
+.Contenedor-item{
+    height: 80px;
+    background-color: #3a3a3a;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+.Datos{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 15px 0;
+}
+.Item-left{
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+p {
+    font-weight: bold;
+    font-size: 13px;
+}
+.Botones {
+    display: flex;
+    gap: 5px;
+}
+button {
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 3px 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #222222;
+}
+.Item-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.Item-right div {
+    background-color: #FB3939;
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.Item-right p {
+    font-weight: bold;
+}

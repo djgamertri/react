@@ -1,7 +1,8 @@
-import React, {useRef, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from "axios";
+import md5 from "md5";
 import Cookies from "universal-cookie";
+import { useHistory } from 'react-router-dom';
+import React, {useRef, useEffect} from 'react';
 import "./login.css";
 
 const Login = ({CloseModal}) => {
@@ -19,7 +20,7 @@ const Login = ({CloseModal}) => {
   useEffect(()=>{
       if (cookies.get("nombre")) {
           history.push("/");
-        }
+      }
   }, [])
 
     
@@ -34,7 +35,7 @@ const Login = ({CloseModal}) => {
   const Envio = async() =>{
     await axios.post(url_l, {
           correo: RefCorreo.current.value,
-          pass: RefPass.current.value,
+          pass: md5(RefPass.current.value),
       })
       .then((response) => {
         return response.data; // ! Retornamos Respuesta para evaluarla
@@ -43,10 +44,9 @@ const Login = ({CloseModal}) => {
         if (response.length > 0) {
           var res = response[0];
           cookies.set("id", res.id, { path: "/" });
-          cookies.set("imagen", res.imagen, { path: "/" });
+          cookies.set("imagen", (res.imagen), { path: "/" });
           cookies.set("nombre", res.nombre, { path: "/" });
           cookies.set("correo", res.correo, { path: "/" });
-          cookies.set("pass", res.pass, { path: "/" });
           cookies.set("rol", res.rol, { path: "/" });
           alert(`Bienvenido ${res.nombre} ${res.rol}`);
           CloseModal(false);

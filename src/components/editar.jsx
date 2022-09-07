@@ -1,3 +1,4 @@
+import md5 from 'md5';
 import axios from 'axios';
 import Cookies from 'universal-cookie'
 import { useHistory } from 'react-router-dom';
@@ -48,7 +49,7 @@ const Editar = ({CloseModal, idusuario, actulizar}) => {
         id: idusuario,
         nombre: RefNombre.current.value,
         correo: RefCorreo.current.value,
-        pass: RefPass.current.value,
+        pass: md5(RefPass.current.value),
         rol: Refrol.current.value,
     })
     .then((response) => {
@@ -83,7 +84,8 @@ const Editar = ({CloseModal, idusuario, actulizar}) => {
                         <input type="hidden" id="id_user" name="id" key={item.id} value={item.id} />
                         <input type="text" id="name" required name="username" placeholder="Username" ref={RefNombre} defaultValue={item.nombre} />
                         <input type="email" id="email" required name="email" placeholder="Email" ref={RefCorreo} defaultValue={item.correo} />
-                        <input type="password" id="pass" required name="password" placeholder="Password" ref={RefPass} defaultValue={item.pass} />
+                        <input type="password" id="pass" required name="password" placeholder="Password" ref={RefPass}/>
+                        <input type="file" id="img"/>
                         <select name="Rol" id="rol" className="N1" ref={Refrol}>
                             <option value={item.idrol}>{item.rol}</option>
                         </select>
