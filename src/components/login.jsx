@@ -13,7 +13,7 @@ const Login = ({CloseModal}) => {
   const RefPass = useRef(null);
   const cookies = new Cookies();
   const history = useHistory();
-  const url_l = "http://localhost/Api/usuario.php";
+  const url_l = "http://api-barbershop.000webhostapp.com/usuario.php";
 
   // ! Cuando inicia el Componente
 

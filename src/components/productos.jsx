@@ -15,7 +15,7 @@ const Productos = () => {
     const history = useHistory();
     const {Añadir} = useContext(CartContext)
     const [resultado, setresultado] = useState([])
-    const url = "http://localhost/Api/productos.php";
+    const url = "http://api-barbershop.000webhostapp.com/productos.php";
 
 
     const Peticion = () => {

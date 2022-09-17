@@ -12,7 +12,7 @@ const Register = ({CloseModal}) => {
     const RefPass = useRef(null);
     const cookies = new Cookies();
     const history = useHistory();
-    const url = "http://localhost/Api/usuario.php";
+    const url = "http://api-barbershop.000webhostapp.com/usuario.php";
 
     useEffect(()=>{
         if (cookies.get("nombre")) {

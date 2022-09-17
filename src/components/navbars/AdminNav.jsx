@@ -53,10 +53,10 @@ const Header = (actulizar) => {
                     Logeado ? Privilegios ? <li><NavLink to="/usuario" exact activeClassName='active' ><span><i class="las la-user"></i></span>Usuarios</NavLink></li> : "" : ""
                 }
                 {
-                    Logeado ? Privilegios ? <li><NavLink to="/reservas" exact activeClassName='active' ><span><i className="las la-book"></i></span>Reservas</NavLink></li> : "" : ""
+                    Logeado ? Privilegios ? <li><NavLink to="/reserva" exact activeClassName='active' ><span><i className="las la-book"></i></span>Reservas</NavLink></li> : "" : ""
                 }
                 {
-                    Logeado ? Privilegios ? <li><NavLink to="/productos" exact activeClassName='active' ><span><i className="las la-book"></i></span>Mis Reservas</NavLink></li> : "" : ""
+                    Logeado ? Privilegios ? <li><NavLink to="/misReservas" exact activeClassName='active' ><span><i className="las la-book"></i></span>Mis Reservas</NavLink></li> : "" : ""
                 }
                 <li><NavLink to="/" exact activeClassName='active' ><span><i className="las la-home"></i></span>Inicio</NavLink></li>
                 {

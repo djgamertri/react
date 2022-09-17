@@ -12,7 +12,7 @@ const Usuario = () => {
     
     const cookies = new Cookies();
     const history = useHistory();
-    const url_l = "http://localhost/Api/usuarios.php";
+    const url_l = "http://api-barbershop.000webhostapp.com/usuarios.php";
     const [resultado, setresultado] = useState([])
     const [OpenModal, setOpenModal] = useState(false)
     const [OpenModalE, setOpenModalE] = useState(false)
@@ -21,7 +21,6 @@ const Usuario = () => {
     const Peticion = () => {
         axios.get(url_l)
         .then((response) => {
-            console.log(response.data);
             const data = response.data;
             setresultado(data)
             setActualiza(false)
@@ -87,7 +86,7 @@ const Usuario = () => {
         </div>
         {OpenModal && <Editar CloseModal={setOpenModal} actulizar={setActualiza} idusuario={UserID} />}
         {OpenModalE && <Eliminar CloseModal={setOpenModalE} actulizar={setActualiza} idusuario={UserID} />}
-        {Actualiza ? Peticion() : "" }
+        {Actualiza ? Peticion() : null }
 
     </main>
   )

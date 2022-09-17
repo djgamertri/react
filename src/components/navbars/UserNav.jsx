@@ -60,7 +60,7 @@ const Header = (actulizar) => {
                 <li><a href="/#servicio" exact activeClassName='active' ><span><i className="las la-book-reader"></i></span>Servicio</a></li>
                 <li><a href="/#footer" exact activeClassName='active' ><span><i className="las la-phone"></i></span>Contactanos</a></li>
                 {
-                    Logeado ? <li><NavLink to="/productos" exact activeClassName='active' ><span><i className="las la-book"></i></span>Mis Reservas</NavLink></li> : ""
+                    Logeado ? <li><NavLink to="/misReservas" exact activeClassName='active' ><span><i className="las la-book"></i></span>Mis Reservas</NavLink></li> : ""
                 }
                 {
                     Logeado ? "" : <li><NavLink to="" onClick={() => {setOpenModal(true);}} className="login_btn" exact activeClassName=''><span><i className="las la-user"></i></span>Login</NavLink></li> 

@@ -9,8 +9,10 @@ const Editar = ({CloseModal, idusuario, actulizar}) => {
 
     const {id} = idusuario;
     const [resultado, setresultado] = useState([])
+    const [Roles, setRoles] = useState([])
     
-    const url_e = "http://localhost/Api/Editaruser.php";
+    const url = "http://api-barbershop.000webhostapp.com/Editaruser.php";
+    const url_r = "http://api-barbershop.000webhostapp.com/Roles.php";
 
     const cookies = new Cookies();
     const history = useHistory();
@@ -20,7 +22,7 @@ const Editar = ({CloseModal, idusuario, actulizar}) => {
     const Refrol = useRef(null);
 
     const Peticion = () => {
-        axios.get(url_e,{
+        axios.get(url,{
             params: {
             id: idusuario
             },
@@ -30,11 +32,21 @@ const Editar = ({CloseModal, idusuario, actulizar}) => {
             setresultado(data)
         })
     }
+    const Rol = () =>{
+        axios.get(url_r)
+        .then((response) => {
+            console.log(response.data);
+            const data = response.data;
+            setRoles(data)
+            
+        })
+    }
 
     useEffect(()=>{
         if (cookies.get("rol") != "Administrador"){
             history.push("/");
         }
+        Rol();
         Peticion();
     }, [])
 
@@ -45,7 +57,7 @@ const Editar = ({CloseModal, idusuario, actulizar}) => {
 
     const Envio = async() =>{
 
-    await axios.post(url_e, {
+    await axios.post(url, {
         id: idusuario,
         nombre: RefNombre.current.value,
         correo: RefCorreo.current.value,
@@ -87,7 +99,11 @@ const Editar = ({CloseModal, idusuario, actulizar}) => {
                         <input type="password" id="pass" required name="password" placeholder="Password" ref={RefPass}/>
                         <input type="file" id="img"/>
                         <select name="Rol" id="rol" className="N1" ref={Refrol}>
-                            <option value={item.idrol}>{item.rol}</option>
+                        {
+                            Roles.map(rol => (
+                                <option value={rol.id} >{rol.rol}</option>
+                            ))
+                        }
                         </select>
                         <input type="submit" name="" onSubmit={preEnvio} defaultValue="Actualizar" />
                         </>

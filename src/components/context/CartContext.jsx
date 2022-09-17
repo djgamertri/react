@@ -55,8 +55,11 @@ const Eliminar = (product) => {
         }))
     }
 }
+const EliminarTodo = () => {
+    setCartItems([])
+}
 return (
-    <CartContext.Provider value={{CartItems, Añadir, Eliminar}}>
+    <CartContext.Provider value={{CartItems, Añadir, Eliminar, EliminarTodo}}>
         {children}
     </CartContext.Provider>
 )

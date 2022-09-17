@@ -1,12 +1,16 @@
+import { useHistory } from 'react-router-dom';
 import React, { useContext, useState } from 'react'
 
 import "./cart.css"
+import Checkout from './checkout';
 import Items from './items'
 import {CartContext} from './context/CartContext'
 
 const Cart = () => {
 
+    const history = useHistory();
     const {CartItems} = useContext(CartContext)
+    const [OpenModal, setOpenModal] = useState(false)
     const [OpenCart, setOpenCart] = useState(false)
     const total = CartItems.reduce((previous, current) => previous + current.amount * current.precio,0);
     const Formato = (numero) => {
@@ -38,9 +42,16 @@ const Cart = () => {
                     </div>
                     
                 }
-                <h2 className='Total'>Total: ${Formato(total)}</h2>
+                <div className='Total'>
+                    <h2 >Total: ${Formato(total)}</h2>
+                    {
+                        CartItems.length == 0 ? 
+                        null : <button onClick={() => {setOpenModal(true);}}>Reservar</button>
+                    }
+                </div>
             </div>
         }
+        {OpenModal && <Checkout CloseModal={setOpenModal}/>}
     </div>
   )
 }
