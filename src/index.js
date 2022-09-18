@@ -1,17 +1,12 @@
 import { CartProvider } from './components/context/CartContext'
-import {MuiPickersUtilsProvider} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
-import esLocale from 'date-fns/locale/es';
 import ReactDOM from "react-dom";
 import App from "./App"
 import "./index.css"
 
 
 ReactDOM.render(
-    <CartProvider>
-        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={esLocale}> 
-            <App /> 
-        </MuiPickersUtilsProvider> 
+    <CartProvider> 
+            <App />    
     </CartProvider>, 
     document.getElementById("root")
 )

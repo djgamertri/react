@@ -6,12 +6,14 @@ import moment from "moment";
 import axios from "axios";
 
 import "./checkout.css"
+import { getValue } from '@testing-library/user-event/dist/utils';
 
 const Checkout = ({CloseModal}) => {
 
   const cookies = new Cookies();
   const {CartItems, EliminarTodo} = useContext(CartContext)
   const [Fecha, SetFecha] = useState(new Date());
+  const formatDate = moment().format('DD-MM-YYYY')
   const url = "http://api-barbershop.000webhostapp.com/SubirReserva.php";
 
   const total = CartItems.reduce((previous, current) => previous + current.amount * current.precio,0);
@@ -25,7 +27,7 @@ const Formato = (numero) => {
 
     const data = {
       id: cookies.get("id"),
-      fecha: moment(Fecha).format('YYYY-MM-DD HH:mm:ss'),
+      fecha: moment(Fecha).format('YYYY-MM-DD HH:mm'),
       cart: CartItems
     }
   
@@ -86,7 +88,7 @@ const Formato = (numero) => {
     fecha.setDate(fecha.getDate() + dias);
     return fecha;
   } 
-  console.log(moment(Fecha).format('YYYY-MM-DD HH:mm:ss'));
+  console.log(moment(Fecha).format('YYYY-MM-DD HH:mm'));
 
   return (
     <section className='Modal-checkout'>
@@ -128,7 +130,7 @@ const Formato = (numero) => {
 
           <div className='Fecha'>
             <label>Fecha y Hora</label>
-				    <DateTimePicker value={Fecha} onChange={SetFecha} />
+				    <input type="DATETIME-LOCAL" min={moment(Fecha).format('YYYY-MM-DD HH:mm')} onChange={SetFecha}/>
           </div>
 
         </div>
