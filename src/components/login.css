@@ -45,6 +45,7 @@
     border-radius: 6px;
     box-shadow: 5px 5px 5px 0.1px #161a1d;
     padding: 2em;
+    overflow-y: auto;
 }
 .modal_close{
     float: right;
