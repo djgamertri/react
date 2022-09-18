@@ -55,7 +55,7 @@ function Mis_reservas() {
     <AdminNav/>
     :  <UserNav/>
       }
-    <div>
+    <div className="table">
       <h1>Mis reservas</h1>
       <table>
         <tr>

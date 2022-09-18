@@ -71,7 +71,7 @@ const Reservas = () => {
     {
       UserID ? 
       
-      <div>
+      <div className="table">
         <table>
             <tr>
                 <th>Id</th>

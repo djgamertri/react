@@ -78,3 +78,38 @@
     background-color: #797979;
     border-radius: 20px;
 }
+@media screen and (max-width: 1000px){
+    .content-service{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+        margin-top: 1rem;
+    }
+}
+@media screen and (max-width: 920px){
+    .content-service{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+        margin-top: 1rem;
+    }
+}
+@media screen and (max-width: 680px) {
+    .content-service{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+@media screen and (max-width: 560px){
+
+    .Contenedor-Boton, .Contenedor-cart{
+        margin-right: 0px;
+    }
+    .Contenedor-cart{
+    width: calc(99vw - 40px);
+    } 
+}
+@media screen and (max-width: 450px){
+    .menu{
+        margin-top: 2rem;
+    }
+}

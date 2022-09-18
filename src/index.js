@@ -11,7 +11,7 @@ ReactDOM.render(
     document.getElementById("root")
 )
 
-/*
+
 const img0 = document.getElementById("imagen0");
 const img1 = document.getElementById("imagen1");
 const img2 = document.getElementById("imagen2");
@@ -38,4 +38,3 @@ observador.observe(img1);
 observador.observe(img2);
 observador.observe(img3); 
 observador.observe(img4);
-*/

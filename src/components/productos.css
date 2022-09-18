@@ -34,3 +34,31 @@ main{
     background: #00964b;
     color: #fff;
 }
+@media screen and (max-width: 1000px){
+    .content-service{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+        margin-top: 1rem;
+    }
+}
+@media screen and (max-width: 920px){
+    .content-service{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 2rem;
+        margin-top: 1rem;
+    }
+}
+@media screen and (max-width: 560px){
+
+    .content-service{
+        grid-template-columns: 100%;
+        margin-top: 30px;
+    }
+}
+@media screen and (max-width: 450px){
+    .menu{
+        margin-top: 2rem;
+    }
+}
