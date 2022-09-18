@@ -9,7 +9,7 @@ const VerReserva = ({CloseModal, idreserva, actulizar, id}) => {
     const history = useHistory();
     const cookies = new Cookies();
     const [resultado, setresultado] = useState([])
-    const url = "http://api-barbershop.000webhostapp.com/reserva.php";
+    const url = "https://api-barbershop.000webhostapp.com/reserva.php";
 
     const Peticion = () => {
         axios.get(url,{

@@ -12,7 +12,7 @@ const Usuario = () => {
     
     const cookies = new Cookies();
     const history = useHistory();
-    const url_l = "http://api-barbershop.000webhostapp.com/usuarios.php";
+    const url_l = "https://api-barbershop.000webhostapp.com/usuarios.php";
     const [resultado, setresultado] = useState([])
     const [OpenModal, setOpenModal] = useState(false)
     const [OpenModalE, setOpenModalE] = useState(false)

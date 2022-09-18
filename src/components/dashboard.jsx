@@ -11,7 +11,7 @@ const Dashboard = () => {
     
     const cookies = new Cookies();
     const history = useHistory();
-    const url = "http://api-barbershop.000webhostapp.com/dashboard.php";
+    const url = "https://api-barbershop.000webhostapp.com/dashboard.php";
     const [resultado, setresultado] = useState([])
 
     useEffect(()=>{

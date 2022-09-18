@@ -11,8 +11,8 @@ const Editar = ({CloseModal, idusuario, actulizar}) => {
     const [resultado, setresultado] = useState([])
     const [Roles, setRoles] = useState([])
     
-    const url = "http://api-barbershop.000webhostapp.com/Editaruser.php";
-    const url_r = "http://api-barbershop.000webhostapp.com/Roles.php";
+    const url = "https://api-barbershop.000webhostapp.com/Editaruser.php";
+    const url_r = "https://api-barbershop.000webhostapp.com/Roles.php";
 
     const cookies = new Cookies();
     const history = useHistory();

@@ -11,8 +11,8 @@ const Reservas = () => {
 
   const cookies = new Cookies();
   const history = useHistory();
-  const url_l = "http://api-barbershop.000webhostapp.com/usuarios.php";
-  const url_r = "http://api-barbershop.000webhostapp.com/reserva.php";
+  const url_l = "https://api-barbershop.000webhostapp.com/usuarios.php";
+  const url_r = "https://api-barbershop.000webhostapp.com/reserva.php";
   const [resultado, setresultado] = useState([])
   const [Reservas, setReservas] = useState([])
   const [OpenModalE, setOpenModalE] = useState(false)

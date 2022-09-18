@@ -12,7 +12,7 @@ function Mis_reservas() {
   const cookies = new Cookies();
   const history = useHistory();
   const idUser = cookies.get("id")
-  const url = "http://api-barbershop.000webhostapp.com/reserva.php";
+  const url = "https://api-barbershop.000webhostapp.com/reserva.php";
   const [Reservas, setReservas] = useState([])
   const [Actualiza, setActualiza] = useState(false)
   const [OpenModalE, setOpenModalE] = useState(false)

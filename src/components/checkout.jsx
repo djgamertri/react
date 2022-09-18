@@ -13,7 +13,7 @@ const Checkout = ({CloseModal}) => {
   const {CartItems, EliminarTodo} = useContext(CartContext)
   const [Fecha, SetFecha] = useState(new Date());
   const formatDate = moment().format('DD-MM-YYYY')
-  const url = "http://api-barbershop.000webhostapp.com/SubirReserva.php";
+  const url = "https://api-barbershop.000webhostapp.com/SubirReserva.php";
 
   const total = CartItems.reduce((previous, current) => previous + current.amount * current.precio,0);
 
