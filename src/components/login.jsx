@@ -24,9 +24,6 @@ const Login = ({CloseModal}) => {
       }
   }, [])
 
-  const headers = {
-    'Content-Type': 'application/json',
-  }
 
   const preEnvio = (e) =>{
     e.preventDefault();
@@ -41,11 +38,6 @@ const Login = ({CloseModal}) => {
       "pass": md5(RefPass.current.value),
   }
     console.log(data)
-    var requestOptions = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      redirect: 'follow',
-    };
     
     await fetch(url_l, {
       method: 'POST',

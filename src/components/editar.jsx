@@ -58,6 +58,34 @@ const Editar = ({CloseModal, idusuario, actulizar}) => {
 
     const Envio = async() =>{
 
+        const data = {
+            id: idusuario,
+            nombre: RefNombre.current.value,
+            correo: RefCorreo.current.value,
+            pass: md5(RefPass.current.value),
+            rol: Refrol.current.value,
+        }
+        await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data)
+          })
+          .then(response => response.text())
+          .then(result =>  { result = JSON.parse(result)
+            if (result == "Actualizado"){
+                alert("Actulizado con exito")
+            }else{
+                alert("Ha ocurrido un error")
+            }
+            CloseModal(false);
+            actulizar(true);
+    
+          })
+        .catch(function (error) {
+            console.log(error);
+            Peticion()
+        });
+
+    /*
     await axios.post(url, {
         id: idusuario,
         nombre: RefNombre.current.value,
@@ -79,7 +107,7 @@ const Editar = ({CloseModal, idusuario, actulizar}) => {
         console.log(error);
         Peticion()
     });
-
+    */
     }
 
   return (
