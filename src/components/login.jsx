@@ -37,8 +37,8 @@ const Login = ({CloseModal}) => {
 
   const Envio = async() =>{
     const data = {
-      correo: RefCorreo.current.value,
-      pass: md5(RefPass.current.value),
+      "correo": RefCorreo.current.value,
+      "pass": md5(RefPass.current.value),
   }
     console.log(data)
     var requestOptions = {
@@ -49,13 +49,13 @@ const Login = ({CloseModal}) => {
     
     await fetch(url_l, {
       method: 'POST',
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
+      redirect: 'follow'
     })
-    .then(response => response.text())
-    .then(result =>  { result = JSON.parse(result);
-      if (result.length > 0) {
-        var res = result[0];
+    .then(response => {return response.json()})
+    .then(response =>  { console.log(response.length);
+      if (response.length > 0) {
+        var res = response[0];
         console.log(res);
         cookies.set("id", res.id, { path: "/" });
         cookies.set("imagen", (res.imagen), { path: "/" });
