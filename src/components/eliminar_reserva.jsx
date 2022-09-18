@@ -37,6 +37,32 @@ const VerReserva = ({CloseModal, idreserva, actulizar, id}) => {
 
     const Envio = async() => {
 
+        const data = {
+            id: idreserva
+        }
+
+        await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data)
+          })
+          .then(response => response.text())
+          .then(result =>  { result = JSON.parse(result)
+            if (result == "Reserva eliminado con exito"){
+                alert("Reserva eliminado con exito")
+            }else{
+                alert("No se pudo eliminar esta reserva")
+            }
+            CloseModal(false);
+            actulizar(true);
+            id(idreserva);
+    
+            })
+            .catch(function (error) {
+                console.log(error);
+                Peticion()
+            });
+
+/*
         await axios.post(url, {
             id: idreserva
         })
@@ -55,7 +81,7 @@ const VerReserva = ({CloseModal, idreserva, actulizar, id}) => {
             console.log(error);
             Peticion()
         });
-
+*/
     }
 
 

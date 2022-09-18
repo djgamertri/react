@@ -12,7 +12,7 @@ const Register = ({CloseModal}) => {
     const RefPass = useRef(null);
     const cookies = new Cookies();
     const history = useHistory();
-    const url = "http://api-barbershop.000webhostapp.com/usuario.php";
+    const url = "https://api-barbershop.000webhostapp.com/RegistarUsuarios.php";
 
     useEffect(()=>{
         if (cookies.get("nombre")) {
@@ -24,13 +24,38 @@ const Register = ({CloseModal}) => {
         e.preventDefault();
         Envio();
     }
-
     const Envio = async() =>{
-        await axios.put(url, {
+        const data = {
             username: RefUser.current.value,
             email: RefCorreo.current.value,
             password: md5(RefPass.current.value),
-        })
+        }
+            
+        await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data)
+          })
+          .then(response => response.text())
+          .then(result =>  { result = JSON.parse(result) 
+            console.log(result);
+                switch (result) {
+                    case "Usuario Registrado":
+                        alert("Usuario Registrado")
+                        CloseModal(false);
+                        break;
+                    case "El usuario que desea registrar ya existe":
+                        alert("El usuario que desea registrar ya existe")
+                        CloseModal(false);
+                        break;
+                    default:
+                        alert("Error al Registar")
+                        CloseModal(false);
+                        break;
+                }
+              })
+          .catch(error => console.log('error', error));
+
+          /*await axios.post(url, )
         .then((response) => {
             switch (response.data) {
                 case "Usuario Registrado":
@@ -50,7 +75,7 @@ const Register = ({CloseModal}) => {
           })
         .catch(function (error) {
             console.log(error);
-        });
+        });*/
     }
   
 

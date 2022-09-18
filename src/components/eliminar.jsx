@@ -12,6 +12,7 @@ const Eliminar = ({CloseModal, idusuario, actulizar}) => {
     const url = "http://api-barbershop.000webhostapp.com/Eliminaruser.php";
 
     const Peticion = () => {
+
         axios.get(url,{
             params: {
             id: idusuario
@@ -22,6 +23,7 @@ const Eliminar = ({CloseModal, idusuario, actulizar}) => {
             setresultado(data)
         })
     }
+
     useEffect(()=>{
         if (cookies.get("rol") != "Administrador"){
             history.push("/");
@@ -36,6 +38,26 @@ const Eliminar = ({CloseModal, idusuario, actulizar}) => {
 
     const Envio = async() => {
 
+        const data = {
+            id: idusuario
+        }
+        await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data)
+          })
+          .then(response => response.text())
+          .then(result =>  { result = JSON.parse(result)
+            if (result == "Usuario eliminado con exito"){
+                alert("Usuario eliminado con exito")
+            }else{
+                alert("No se pudo eliminar este usuario")
+            }
+            CloseModal(false);
+            actulizar(true);
+          })
+          .catch(error => console.log(error), Peticion());
+
+        /*
         await axios.post(url, {
             id: idusuario
         })
@@ -53,6 +75,7 @@ const Eliminar = ({CloseModal, idusuario, actulizar}) => {
             console.log(error);
             Peticion()
         });
+        */
 
     }
 

@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 import { useHistory } from 'react-router-dom';
 import React, {useRef, useEffect} from 'react';
 import "./login.css";
+import { parseJSON } from "date-fns";
 
 const Login = ({CloseModal}) => {
   
@@ -23,7 +24,9 @@ const Login = ({CloseModal}) => {
       }
   }, [])
 
-    
+  const headers = {
+    'Content-Type': 'application/json',
+  }
 
   const preEnvio = (e) =>{
     e.preventDefault();
@@ -33,11 +36,45 @@ const Login = ({CloseModal}) => {
   // ! Definimos la funcion del envio
 
   const Envio = async() =>{
-    await axios.post(url_l, {
-          correo: RefCorreo.current.value,
-          pass: md5(RefPass.current.value),
-      })
+    const data = {
+      correo: RefCorreo.current.value,
+      pass: md5(RefPass.current.value),
+  }
+    console.log(data)
+    var requestOptions = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      redirect: 'follow',
+    };
+    
+    await fetch(url_l, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(result =>  { result = JSON.parse(result);
+      if (result.length > 0) {
+        var res = result[0];
+        console.log(res);
+        cookies.set("id", res.id, { path: "/" });
+        cookies.set("imagen", (res.imagen), { path: "/" });
+        cookies.set("nombre", res.nombre, { path: "/" });
+        cookies.set("correo", res.correo, { path: "/" });
+        cookies.set("rol", res.rol, { path: "/" });
+        alert(`Bienvenido ${res.nombre} ${res.rol}`);
+        CloseModal(false);
+        window.location.href = "../";
+        history.push("/");
+      } else {
+        alert("Credenciales Incorrectas, Porfavor intente de nuevo");
+      }})
+    .catch(error => console.log('error', error));
+
+    /*
+    
+    await axios.post(url_l, data ,headers)
       .then((response) => {
+        console.log(response.data);
         return response.data; // ! Retornamos Respuesta para evaluarla
       })
       .then((response) => {
@@ -59,6 +96,8 @@ const Login = ({CloseModal}) => {
       .catch((error) => {
         console.log(error);
       });
+      
+    */
   }
 
     return (

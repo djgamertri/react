@@ -22,6 +22,38 @@ const Formato = (numero) => {
 }
 
   const Enviar = async() =>{
+
+    const data = {
+      id: cookies.get("id"),
+      fecha: moment(Fecha).format('YYYY-MM-DD HH:mm:ss'),
+      cart: CartItems
+    }
+  
+
+    await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(result =>  { result = JSON.parse(result)
+      switch (result) {
+        case "Reserva Registrado":
+            alert("Reserva Registrado")
+            CloseModal(false);
+            EliminarTodo();
+            break;
+        case "Error al reservar":
+            alert("Lo sentimos no se ha podido registrar su reserva, porfavor intente mas tarde")
+            CloseModal(false);
+            break;
+        default:
+            alert("Error al reservar xd ")
+            CloseModal(false);
+            break;
+      }
+    })
+    .catch(error => console.log('error', error));
+    /*
     await axios.post(url, {
       id: cookies.get("id"),
       fecha: moment(Fecha).format('YYYY-MM-DD HH:mm:ss'),
@@ -47,7 +79,7 @@ const Formato = (numero) => {
   })
   .catch((error) => {
     console.log(error);
-  });
+  });*/
   }
 
   const sumarDias = (fecha, dias) =>{
