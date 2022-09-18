@@ -45,6 +45,7 @@
     margin: 0px auto;
     margin-bottom: 15%;
     top: 0;
+    display: flex;
 }
 .Order-container hr{
     margin: 10px auto;
@@ -144,4 +145,20 @@
 }
 .MuiDialog-root{
     z-index: 99999 !important;
+}
+@media screen and (max-width: 560px){
+    .checkout-container{
+        flex-direction: column;
+    }
+    .Order-container{
+        width: auto;
+    }
+    .Perfil-container{
+        display: none;
+    }
+}
+@media screen and (max-width: 450px){
+    .menu{
+        margin-top: 2rem;
+    }
 }
