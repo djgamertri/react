@@ -28,7 +28,7 @@
     "eject": "react-scripts eject",
     "preinstall": "npx npm-force-resolutions",
     "heroku-prebuild": "npm i --force",
-    "heroku-postbuild": "npm --force"
+    "heroku-postbuild": "npm i --force"
   },
   "eslintConfig": {
     "extends": [
